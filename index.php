@@ -1,3 +1,4 @@
+<?php include("include/connect.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,61 +32,53 @@
         </div>
 
         <div class="solved-problems">
-            <div class="problem-card">
-                <div class="hover-image-container">
-                    <img
-                        src="img/problems/problem1-after.jpg"
-                        alt="Фото проблемы"
-                        class="hover-image"
-                        data-original="img/problems/problem1-after.jpg"
-                        data-hover="img/problems/problem1.jpg"
-                    >
-                </div>
-                <div class="problem-info">
-                    <h3>Сломаны почтовые ящики</h3>
-                    <p class="category">Мой дом</p>
-                    <p class="date">01.01.2023</p>
-                    <p>В подъезде дома №5 сломано крепление почтового ящика, что вызывает
-                        неудобства для жителей данного дома и может привести к потере почтовых отправлений</p>
-                </div>
-            </div>
-            <div class="problem-card">
-                <div class="hover-image-container">
-                    <img
-                        src="img/problems/problem2-after.jpg"
-                        alt="Фото проблемы"
-                        class="hover-image"
-                        data-original="img/problems/problem2-after.jpg"
-                        data-hover="img/problems/problem2.jpg"
-                    >
-                </div>
-                <div class="problem-info">
-                    <h3>Не горят фонари</h3>
-                    <p class="category">Дворовая территория</p>
-                    <p class="date">01.01.2023</p>
-                    <p>В переулке между улицами Пушкина и Лермонтова возникла серьезная проблема – уличные фонари
-                        перестали работать. Эта ситуация создает темные и небезопасные условия для пешеходов и жителей
-                        района.</p>
-                </div>
-            </div>
-            <div class="problem-card">
-                <div class="hover-image-container">
-                    <img
-                        src="img/problems/problem3-after.jpg"
-                        alt="Фото проблемы"
-                        class="hover-image"
-                        data-original="img/problems/problem3-after.jpg"
-                        data-hover="img/problems/problem3.jpg"
-                    >
-                </div>
-                <div class="problem-info">
-                    <h3>Темно в подъезде</h3>
-                    <p class="category">Освещение в жилых домах</p>
-                    <p class="date">01.01.2023</p>
-                    <p>В подъезде дома №17 по улице Советская обнаружена проблема с освещением. Светильники в подъезде
-                        перестали работать, создавая неудобства и угрозу безопасности для жильцов</p>
-                </div>
-            </div>
+
+            <?php
+                $sql = $connect->query("
+                                SELECT 
+                                    `issues`.`id`,
+                                    `issues`.`metka`,
+                                    `issues`.`photo`,
+                                    `issues`.`photo_after`,
+                                    `issues`.`description`,
+                                    `issues`.`name` AS issue_name,
+                                    `categories`.`name` AS category_name
+                                
+                                FROM 
+                                    `issues`, `categories` 
+                                WHERE 
+                                    `issues`.`id_category` = `categories`.`id` AND `issues`.`status` = 'Решена'
+                                ORDER BY `issues`.`id` DESC 
+                                LIMIT 3
+                                ");
+
+                $myRow = mysqli_fetch_array($sql);
+
+                do {
+                    echo
+                    "
+                        <div class='problem-card'>
+                            <div class='hover-image-container'>
+                                <img
+                                    src='{$myRow["photo_after"]}'
+                                    alt='Фото проблемы'
+                                    class='hover-image'
+                                    data-original='{$myRow["photo_after"]}'
+                                    data-hover='{$myRow["photo"]}'
+                                >
+                            </div>
+                            <div class='problem-info'>
+                                <h3>{$myRow['issue_name']}</h3>
+                                <p class='category'>{$myRow['category_name']}</p>
+                                <p class='date'>{$myRow['metka']}</p>
+                                <p>{$myRow['description']}</p>
+                            </div>
+                        </div>
+                    ";
+                }
+                while($myRow = mysqli_fetch_array($sql))
+            ?>
+
         </div>
     </section>
 
@@ -145,24 +138,7 @@
         </div>
     </div>
 
-    <script>
-        window.onload = counter;
-
-        function counter(){
-            $.ajax({
-                url: "ajax/action_counter_ajax.php",
-                method: "GET",
-                dataType: "json",
-                success: function(otvet){
-                    console.log(otvet);
-                    document.querySelector('#counter').innerHTML = otvet['count'];
-                },
-                error: function (){}
-            });
-        }
-        setInterval(function (){}, 5000);
-
-    </script>
+    <script src="js/ajax/counter.js"></script>
     <script src="js/main.js" type="text/javascript"></script>
 
 </body>

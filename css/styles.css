@@ -149,7 +149,7 @@ header {
 .solved-problems {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap; /* Добавим обертку для карточек проблем */
+    flex-wrap: wrap;
 }
 
 .problem-card {
@@ -162,12 +162,16 @@ header {
 }
 
 .hover-image-container {
+    width: 340px;
+    height: 250px;
     overflow: hidden;
     position: relative;
 }
 
 .hover-image {
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     margin-bottom: 8px;
     border-radius: 10px 40px;
     transition: transform 0.5s ease-in-out;
@@ -189,7 +193,7 @@ header {
 }
 
 .date {
-    bottom: 160px;
+    bottom: 100px;
     right: 0;
     background: var(--nautilus-medium, #719A9C);
 }
