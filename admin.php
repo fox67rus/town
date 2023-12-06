@@ -1,12 +1,10 @@
+<?php  include("include/connect.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <?php include("include/head.php"); ?>
+
     <link rel="stylesheet" href="css/admin.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>Кабинет администратора</title>
 </head>
 
@@ -17,7 +15,7 @@
 
     <section class="welcome-section">
         <h1>Кабинет администратора</h1>
-        <p class="hello">Привет, <span>Император Николай Александрович Романов!</span></p>
+        <?php  include("include/say_hello.php"); ?>
     </section>
 
     <!-- Раздел "Управление категориями" -->
@@ -59,7 +57,7 @@
             <span class="counter-value"> 2</span>
         </div>
 
-        <div class="filter-section">
+        <div class="filter">
             <label for="statusFilter">Фильтр по статусу:</label>
             <select id="statusFilter">
                 <option value="all">Все заявки</option>

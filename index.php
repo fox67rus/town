@@ -3,11 +3,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <?php include("include/head.php"); ?>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>-->
     <title>Городской портал</title>
 </head>
 
@@ -27,7 +24,7 @@
     <section class="problem-section">
 
         <div class="problem-header">
-            <h2>Решенные проблемы</h2>
+            <h2>Последние решённые проблемы</h2>
             <p>Решено проблем: <span id="counter">345</span></p>
         </div>
 
@@ -118,12 +115,12 @@
         </div>
     </div>
 
-    <!-- Модальное окно для авторизации -->
-    <div id="loginModal" class="modal">
+<!--     Модальное окно для авторизации-->
+    <div id="loginForm" class="modal">
         <div class="modal-content">
             <span class="close" id="closeLoginModal">&times;</span>
             <h2>Авторизация</h2>
-            <form id="loginForm">
+            <form id="loginForm" method="post">
                 <label for="loginUsername">Логин:</label>
                 <input type="text" id="loginUsername" name="loginUsername" placeholder="Email" required>
 
@@ -139,6 +136,7 @@
     </div>
 
     <script src="js/ajax/counter.js"></script>
+<!--    <script src="js/ajax/auth.js"></script>-->
     <script src="js/main.js" type="text/javascript"></script>
 
 </body>

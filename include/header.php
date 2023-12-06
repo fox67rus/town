@@ -5,20 +5,21 @@
                 </div>
             </a>
 
-            <div class="auth-buttons">
+            <div class="header-buttons">
+
             <?php
                 if (isset($_SESSION['fio'])) {
-                    if ($_SESSION['role'] ==0) {echo "<a href='user.php'>Личный кабинет</a>";}
-                    elseif ($_SESSION['role'] == 1) {echo "<a href='admin.php'>Личный кабинет</a>";}
+                    if ($_SESSION['role'] ==0) {echo "<a href='user.php' class='middle-button cabinet-button'>Личный кабинет</a>";}
+                    elseif ($_SESSION['role'] == 1) {echo "<a href='admin.php' class='middle-button cabinet-button'>Личный кабинет</a>";}
 
-                    echo "<button id='logoutButton'>Выйти</button>";
+                    echo "<a href='exit.php' class='middle-button exit-button'>Выйти</a>";
                 } else {
-                    echo "<button id='loginButton'>Авторизация</button>";
-                    echo "<button id='registrationButton' class='register-button'>Регистрация</button>";
+//                    echo "<div id='loginButton' class='middle-button auth-button'>Войти</div>";
+//                    echo "<div id='registrationButton' class='middle-button register-button'>Регистрация</div>";
+                    echo "<a href='auth.php' class='middle-button auth-button'>Войти</a>";
+                    echo "<a href='reg.php' class='middle-button register-button'>Регистрация</a>";
                 }
-
-
             ?>
             </div>
-    </header>
+</header>
 
