@@ -29,7 +29,7 @@
                             FROM 
                                 `issues`, `categories` 
                             WHERE 
-                                `issues`.`id_category` = `categories`.`id` AND `issues`.`id_user` = '$idUser'
+                                `issues`.`id_category` = `categories`.`id`
                             ORDER BY `issues`.`id` DESC
                             ");
 
@@ -46,7 +46,7 @@
                             FROM 
                                 `issues`, `categories` 
                             WHERE 
-                                `issues`.`id_category` = `categories`.`id` AND `issues`.`id_user` = '$idUser' AND `issues`.`status` = '$filter'
+                                `issues`.`id_category` = `categories`.`id` AND `issues`.`status` = '$filter'
                             ORDER BY `issues`.`id` DESC
                             ");
     } else {

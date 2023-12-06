@@ -1,4 +1,5 @@
 <?php  include("include/connect.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
 
     <section class="welcome-section">
         <h1>Кабинет администратора</h1>
+
         <?php  include("include/say_hello.php"); ?>
     </section>
 
@@ -23,7 +25,6 @@
         <h2>
             <label for="toggleCategorySection">Управление категориями</label>
             <button id="toggleCategorySection" class="toggle-button">▼</button>
-
         </h2>
 
         <div id="categorySectionContent">
@@ -37,9 +38,7 @@
             <form id="deleteCategoryForm">
                 <label for="categoryToDelete">Выберите категорию для удаления:</label>
                 <select id="categoryToDelete" name="categoryToDelete" required>
-                    <option value="category1">Дворовая территория</option>
-                    <option value="category2">Освещение</option>
-                    <option value="category3">Другое</option>
+                    <?php include("include/get_category.php"); ?>
                 </select>
                 <button type="button" id="deleteCategoryButton">Удалить</button>
             </form>
@@ -54,100 +53,51 @@
         <!-- блок для счетчика новых заявок -->
         <div id="newRequestsCounter" class="new-requests-counter">
             <span class="counter-label">Новых заявок:</span>
-            <span class="counter-value"> 2</span>
+            <span id="counter-value"> 2</span>
         </div>
 
         <div class="filter">
-            <label for="statusFilter">Фильтр по статусу:</label>
-            <select id="statusFilter">
-                <option value="all">Все заявки</option>
-                <option value="new">Новые</option>
-                <option value="resolved">Решенные</option>
-                <option value="rejected">Отклоненные</option>
-            </select>
+            <form>
+                <label for="statusFilter">Фильтр по статусу:</label>
+                <select id="statusFilter" name="statusFilter" onchange="sendFiltr(this.value)">
+                    <option value="all">Все</option>
+                    <option value="Новая">Новые</option>
+                    <option value="Решена">Решенные</option>
+                    <option value="Отклонена">Отклоненные</option>
+                </select>
+            </form>
+
         </div>
 
         <div class="user-requests">
-            <div class="user-request">
+            <!-- Карточки с заявками-->
+        </div>
+
+        <div class="user-request">
+            <div class="lk-image-container">
                 <img src="img/problems/problem1.jpg" alt="Фото проблемы 1">
-                <div class="request-info">
-
-                    <div class="header-section">
-                        <h3>Сломаны почтовые ящики</h3>
-                        <p class="lk_date">01.01.2023</p>
-                        <button class="ico-button resolved-button" data-id="1" title="Сменить статус на Решено"></button>
-                        <button class="ico-button rejected-button" data-id="1" title="Отклонить"></button>
-                        <span class="status new-status">Новая</span>
-                    </div>
-
-                    <p class="lk_category">Мой дом</p>
-                    <p>В подъезде дома №5 сломано крепление почтового ящика, что вызывает неудобства для жителей данного
-                        дома и может привести к потере почтовых отправлений</p>
-                </div>
             </div>
-
-            <div class="user-request">
-                <img src="img/problems/problem1.jpg" alt="Фото проблемы 1">
-                <div class="request-info">
-
-                    <div class="header-section">
-                        <h3>Сломаны почтовые ящики</h3>
-                        <p class="lk_date">01.01.2023</p>
-                        <button class="ico-button resolved-button" data-id="1" title="Сменить статус на Решено"></button>
-                        <button class="ico-button rejected-button" data-id="1" title="Отклонить"></button>
-                        <span class="status resolved-status">Решена</span>
-                    </div>
-
-                    <p class="lk_category">Мой дом</p>
-                    <p>В подъезде дома №5 сломано крепление почтового ящика, что вызывает неудобства для жителей данного
-                        дома и может привести к потере почтовых отправлений</p>
-                </div>
-            </div>
-            <div class="user-request">
-            <img src="img/problems/problem1.jpg" alt="Фото проблемы 1">
             <div class="request-info">
 
                 <div class="header-section">
                     <h3>Сломаны почтовые ящики</h3>
-                    <p class="lk_date">01.01.2023</p>
-                    <button class="ico-button resolved-button" data-id="1" title="Сменить статус на Решено"></button>
-                    <button class="ico-button rejected-button" data-id="1" title="Отклонить"></button>
+
+                    <form>
+                        <label for="resolvedButton">
+                            <div class="ico-button resolved-button" title="Сменить статус на Решено"></div>
+                        </label>
+                        <input id="resolvedButton" type="radio" name="status" data-id="11" value="Решена">
+
+                        <label>
+                            <div class="ico-button rejected-button"  title="Отклонить"></div>
+                            <input type="radio" name="status" data-id="11" value="Отклонена">
+                        </label>
+
+                    </form>
+
                     <span class="status new-status">Новая</span>
                 </div>
-
-                <p class="lk_category">Мой дом</p>
-                <p>В подъезде дома №5 сломано крепление почтового ящика, что вызывает неудобства для жителей данного
-                    дома и может привести к потере почтовых отправлений</p>
-            </div>
-        </div>
-            <div class="user-request">
-            <img src="img/problems/problem1.jpg" alt="Фото проблемы 1">
-            <div class="request-info">
-
-                <div class="header-section">
-                    <h3>Сломаны почтовые ящики</h3>
-                    <p class="lk_date">01.01.2023</p>
-                    <button class="ico-button resolved-button" data-id="1" title="Сменить статус на Решено"></button>
-                    <button class="ico-button rejected-button" data-id="1" title="Отклонить"></button>
-                    <span class="status new-status">Новая</span>
-                </div>
-
-                <p class="lk_category">Мой дом</p>
-                <p>В подъезде дома №5 сломано крепление почтового ящика, что вызывает неудобства для жителей данного
-                    дома и может привести к потере почтовых отправлений</p>
-            </div>
-        </div>
-            <div class="user-request">
-            <img src="img/problems/problem1.jpg" alt="Фото проблемы 1">
-            <div class="request-info">
-
-                <div class="header-section">
-                    <h3>Сломаны почтовые ящики</h3>
-                    <p class="lk_date">01.01.2023</p>
-                    <button class="ico-button resolved-button" data-id="1" title="Сменить статус на Решено"></button>
-                    <button class="ico-button rejected-button" data-id="1" title="Отклонить"></button>
-                    <span class="status new-status">Новая</span>
-                </div>
+                <p class="lk_date">01.01.2023</p>
 
                 <p class="lk_category">Мой дом</p>
                 <p>В подъезде дома №5 сломано крепление почтового ящика, что вызывает неудобства для жителей данного
@@ -155,8 +105,6 @@
             </div>
         </div>
 
-
-        </div>
     </section>
 
     <div id="scrollTopButton" class="scroll-top-button">↑</div>
@@ -180,6 +128,7 @@
 </div>
 
 <!-- Модальное окно для отклонения заявки-->
+
 <div id="rejectModal" class="modal">
     <div class="modal-content delete-modal-content">
         <span class="close" id="closeRejectModal">&times;</span>
@@ -193,9 +142,10 @@
     </div>
 </div>
 
-
-<script src="js/user.js" type="text/javascript"></script> <!--подключаем для использования скрипта фильтрации-->
 <script src="js/admin.js" type="text/javascript"></script>
+<script src="js/ajax/statusFilterAdmin.js"></script>
+<script src="js/ajax/counterAdmin.js"></script>
+<script src="js/ajax/changeStatus.js"></script>
 
 </body>
 </html>

@@ -109,7 +109,7 @@
                 <button type="submit">Зарегистрироваться</button>
                 <label>
                     <input type="checkbox" id="agree" name="agree" checked required>
-                    Нажимая на кнопку, вы соглашаетесь с условиями <a href="privacy-policy.html">обработки персональных данных</a>
+                    Нажимая на кнопку, вы соглашаетесь с условиями <a href="privacy-policy.php">обработки персональных данных</a>
                 </label>
             </form>
         </div>
@@ -134,6 +134,8 @@
             </form>
         </div>
     </div>
+
+<!--    <audio id="notificationSound" src="js/tik.wav" autoplay="false"></audio>-->
 
     <script src="js/ajax/counter.js"></script>
 <!--    <script src="js/ajax/auth.js"></script>-->

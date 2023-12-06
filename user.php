@@ -66,6 +66,7 @@
 
 <head>
     <?php include("include/head.php"); ?>
+
     <link rel="stylesheet" href="css/user.css">
     <title>Кабинет пользователя</title>
 </head>
@@ -77,6 +78,7 @@
 
     <section class="welcome-section">
         <h1>Кабинет пользователя</h1>
+
         <?php  include("include/say_hello.php"); ?>
         <button id="reportProblemButton">Сообщить о проблеме ▼</button>
     </section>
@@ -102,17 +104,7 @@
 
             <label for="problemCategory">Категория:</label>
             <select id="problemCategory" name="problemCategory" required>
-                <?php
-                $sql = $connect->query("SELECT * FROM `categories`");
-                $mytable = mysqli_fetch_array($sql);
-                do
-                {
-                    echo "<option value='{$mytable['id']}'>{$mytable['name']}</option>";
-                }
-                while ($mytable = mysqli_fetch_array($sql)); // пока построчно записываются данные из базы
-
-                ?>
-
+                <?php include("include/get_category.php"); ?>
             </select>
 
             <label for="problemPhoto">
@@ -140,43 +132,9 @@
             </form>
         </div>
 
-        <table id="table_zayavki">
-            <thead>
-            <tr>
-                <th>Временная метка</th>
-                <th>Название заявки</th>
-                <th>Описание заявки</th>
-                <th>Категория заявки</th>
-                <th>Статус заявки</th>
-                <th>Удаление</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Здесь будет отображаться список заявок -->
-            </tbody>
-        </table>
-
-
-<!--        <div class="user-requests">-->
-<!--            -->
-<!--            <div class="user-request">-->
-<!--                <img src="img/problems/problem1.jpg" alt="Фото проблемы 1">-->
-<!--                <div class="request-info">-->
-<!---->
-<!--                    <div class="header-section">-->
-<!--                        <h3>Сломаны почтовые ящики</h3>-->
-<!--                        <p class="lk_date">01.01.2023</p>-->
-<!--                        <button class="ico-button delete-button" data-id="1" title="Удалить заявку"></button>-->
-<!--                        <span class="status new-status">Новая</span>-->
-<!--                    </div>-->
-<!---->
-<!--                    <p class="lk_category">Мой дом</p>-->
-<!--                    <p>В подъезде дома №5 сломано крепление почтового ящика, что вызывает неудобства для жителей данного-->
-<!--                        дома и может привести к потере почтовых отправлений</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            -->
-<!--        </div>-->
+        <div class="user-requests">
+        <!-- Карточки с заявками-->
+        </div>
 
     </section>
 

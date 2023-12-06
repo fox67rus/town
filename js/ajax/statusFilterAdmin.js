@@ -18,9 +18,9 @@ function displayProblems(data) {
         var h3 = $("<h3>").text(problem.issue_name);
         var lkDate = $("<p>").addClass("lk_date").text(problem.metka);
 
-        var deleteButton = $("<div>").addClass("ico-button delete-button").attr("title", "Удалить заявку");
-        var deleteLink = $("<a>").attr("href", "delete_issue.php?id=" + problem.id);
-        
+        var resolveButton = $("<div>").addClass("ico-button resolved-button").attr("title", "Сменить статус на Решено").attr("data-id", problem.id);
+        var rejectButton = $("<div>").addClass("ico-button rejected-button").attr("title", "Отклонить заявку").attr("data-id", problem.id);
+
         var status = $("<span>").addClass("status").text(problem.status);
 
         if (problem.status === 'Новая') {
@@ -32,10 +32,9 @@ function displayProblems(data) {
         }
 
         // Добавляем элементы DOM карточки
-        deleteLink.append(deleteButton);
         imageContainer.append(img);
         if (problem.status === 'Новая') {
-            headerSection.append(lkDate, h3, deleteLink, status);
+            headerSection.append(lkDate, h3, resolveButton, rejectButton, status);
         } else {
             headerSection.append(lkDate, h3, status);
         }
@@ -50,14 +49,13 @@ function displayProblems(data) {
 }
 
 function sendFiltr(filter) {
-    var actionScript =
     $.ajax({
-        url: '../../ajax/action_filter_ajax.php',
+        url: '../../ajax/action_admin_filter_ajax.php',
         method: "GET",
         dataType: "json",
         data: {'filter': filter},
         success: function (otvet) {
-            console.log(otvet);
+            // console.log(otvet);
             displayProblems(otvet);
         },
         error: function () {

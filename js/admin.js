@@ -39,7 +39,7 @@ $(document).ready(function () {
     });
 
 
-    // Открытие модального окна при нажатии на кнопку "Удалить заявку"
+    // Открытие модального окна при нажатии на кнопку "Удалить категорию"
     $('#deleteCategoryButton').on('click', function () {
         $('#deleteModal').css('display', 'block');
     });

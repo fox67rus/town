@@ -6,7 +6,7 @@
     </a>
     <div class="privacy-policy">
         <p>Copyright © Городской портал, 2023.
-            <span><a href="privacy-policy.html">Политика конфиденциальности</a></span>
+            <span><a href="privacy-policy.php">Политика конфиденциальности</a></span>
         </p>
     </div>
 </footer>
